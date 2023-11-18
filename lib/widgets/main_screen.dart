@@ -1,3 +1,4 @@
+import 'package:banking_demo/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -14,9 +15,9 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: [
-        Text('Home'),
-        Text('Accounts'),
-        Text('services')
+        HomeScreen(),
+        Center(child: Text('Accounts')),
+        Center(child: Text('services'))
       ][_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: List.generate(3, (i) => BottomNavigationBarItem(
