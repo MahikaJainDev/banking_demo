@@ -1,3 +1,4 @@
+import 'package:banking_demo/queries.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -12,35 +13,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Query(
         options: QueryOptions(
-          document: gql("""query getHome {
-          home {
-          name
-          accountNumber
-          balance
-          currency
-          address {
-          streetName
-          buildingNumber
-          townName
-          postCode
-          country
-          }
-          recentTransactions {
-          date
-          description
-          amount
-          fromAccount
-          toAccount
-          }
-          upcomingBills {
-          date
-          description
-          amount
-          fromAccount
-          toAccount
-          }
-          }
-      }"""),
+          document: gql(getHomeData),
         ),
         builder: (QueryResult result, {VoidCallback? refetch, FetchMore? fetchMore}) {
           if (result.hasException) {
