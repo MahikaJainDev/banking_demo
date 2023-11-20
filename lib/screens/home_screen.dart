@@ -1,6 +1,8 @@
-import 'package:banking_demo/queries.dart';
+import 'package:banking_demo/blocs/home_data_state.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../blocs/home_data_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,29 +11,24 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home screen'),
+        title: const Text('Home screen'),
       ),
-      body: Query(
-        options: QueryOptions(
-          document: gql(getHomeData),
-        ),
-        builder: (QueryResult result, {VoidCallback? refetch, FetchMore? fetchMore}) {
-          if (result.hasException) {
-            print(result.exception);
-            return Center(
-              child: Text(result.exception.toString()),
-            );
-          }
-          if(result.isLoading) {
+      body: BlocBuilder<HomeDataCubit, HomeDataState> (
+        builder: (context, state) {
+          if(state is HomeDataLoadingState) {
             return const Center(
-            child: CircularProgressIndicator(),
-            );
-    }
-            final homeData = result.data!['home'];
-            return Center(
-              child: Text(homeData['name'].toString()),
+              child: CircularProgressIndicator(),
             );
           }
+          if(state is HomeDataLoadedState) {
+            return Center(
+              child: Text(state.homeData.home!.name!),
+            );
+          }
+          return const Center(
+            child: Text('Something went wrong!'),
+          );
+        }
       ),
     );
   }

@@ -7,21 +7,18 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 
 class HomeRepository {
   GraphQLClient _client = clientToQuery();
-  HomeDataModel? homeData;
 
-  Future<void> fetchHomeData() async {
+  Future<HomeDataModel?> fetchHomeData() async {
     QueryResult result = await _client.query(
       QueryOptions(document: gql(getHomeData))
     );
     if(result.hasException){
-      return;
+      return null;
     }
     Map<String, dynamic>? map = result.data;
     if(map == null){
-      return;
+      return null;
     }
-    print(result.data);
-    homeData = HomeDataModel.fromJson(map);
-    print(homeData!.home!.name);
+    return HomeDataModel.fromJson(map);
   }
 }
