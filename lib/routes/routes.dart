@@ -1,4 +1,4 @@
-import 'package:banking_demo/widgets/main_screen.dart';
+import 'package:banking_demo/widgets/my_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,7 +22,7 @@ final GoRouter router = GoRouter(
         GoRoute(
             path: 'bottomNavigationBar',
           builder: (BuildContext context, GoRouterState state) {
-              return const MainScreen();
+              return MyBottomNavigationBar();
           }
         ),
       ],
