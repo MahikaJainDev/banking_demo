@@ -1,32 +1,17 @@
 class HomeDataModel {
-  Data? data;
-
-  HomeDataModel({this.data});
-
-  HomeDataModel.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    return data;
-  }
-}
-
-class Data {
+  String? sTypename;
   Home? home;
 
-  Data({this.home});
+  HomeDataModel({this.sTypename, this.home});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  HomeDataModel.fromJson(Map<String, dynamic> json) {
+    sTypename = json['__typename'];
     home = json['home'] != null ? new Home.fromJson(json['home']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['__typename'] = this.sTypename;
     if (this.home != null) {
       data['home'] = this.home!.toJson();
     }
@@ -35,8 +20,9 @@ class Data {
 }
 
 class Home {
+  String? sTypename;
   String? name;
-  String? accountNumber;
+  int? accountNumber;
   double? balance;
   String? currency;
   Address? address;
@@ -44,7 +30,8 @@ class Home {
   List<UpcomingBills>? upcomingBills;
 
   Home(
-      {this.name,
+      {this.sTypename,
+        this.name,
         this.accountNumber,
         this.balance,
         this.currency,
@@ -53,8 +40,9 @@ class Home {
         this.upcomingBills});
 
   Home.fromJson(Map<String, dynamic> json) {
+    sTypename = json['__typename'];
     name = json['name'];
-    accountNumber = json['accountNumber'];
+    accountNumber = int.tryParse(json['accountNumber']);
     balance = json['balance'];
     currency = json['currency'];
     address =
@@ -75,6 +63,7 @@ class Home {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['__typename'] = this.sTypename;
     data['name'] = this.name;
     data['accountNumber'] = this.accountNumber;
     data['balance'] = this.balance;
@@ -95,29 +84,33 @@ class Home {
 }
 
 class Address {
+  String? sTypename;
   String? streetName;
-  String? buildingNumber;
+  int? buildingNumber;
   String? townName;
-  String? postCode;
+  int? postCode;
   String? country;
 
   Address(
-      {this.streetName,
+      {this.sTypename,
+        this.streetName,
         this.buildingNumber,
         this.townName,
         this.postCode,
         this.country});
 
   Address.fromJson(Map<String, dynamic> json) {
+    sTypename = json['__typename'];
     streetName = json['streetName'];
-    buildingNumber = json['buildingNumber'];
+    buildingNumber = int.tryParse(json['buildingNumber']);
     townName = json['townName'];
-    postCode = json['postCode'];
+    postCode = int.tryParse(json['postCode']);
     country = json['country'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['__typename'] = this.sTypename;
     data['streetName'] = this.streetName;
     data['buildingNumber'] = this.buildingNumber;
     data['townName'] = this.townName;
@@ -128,6 +121,7 @@ class Address {
 }
 
 class RecentTransactions {
+  String? sTypename;
   String? date;
   String? description;
   int? amount;
@@ -135,13 +129,15 @@ class RecentTransactions {
   String? toAccount;
 
   RecentTransactions(
-      {this.date,
+      {this.sTypename,
+        this.date,
         this.description,
         this.amount,
         this.fromAccount,
         this.toAccount});
 
   RecentTransactions.fromJson(Map<String, dynamic> json) {
+    sTypename = json['__typename'];
     date = json['date'];
     description = json['description'];
     amount = json['amount'];
@@ -151,6 +147,7 @@ class RecentTransactions {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['__typename'] = this.sTypename;
     data['date'] = this.date;
     data['description'] = this.description;
     data['amount'] = this.amount;
@@ -161,20 +158,23 @@ class RecentTransactions {
 }
 
 class UpcomingBills {
+  String? sTypename;
   String? date;
   String? description;
-  double? amount;
+  num? amount;
   String? fromAccount;
   String? toAccount;
 
   UpcomingBills(
-      {this.date,
+      {this.sTypename,
+        this.date,
         this.description,
         this.amount,
         this.fromAccount,
         this.toAccount});
 
   UpcomingBills.fromJson(Map<String, dynamic> json) {
+    sTypename = json['__typename'];
     date = json['date'];
     description = json['description'];
     amount = json['amount'];
@@ -184,6 +184,7 @@ class UpcomingBills {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['__typename'] = this.sTypename;
     data['date'] = this.date;
     data['description'] = this.description;
     data['amount'] = this.amount;
