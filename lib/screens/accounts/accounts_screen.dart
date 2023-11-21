@@ -1,6 +1,5 @@
 import 'package:banking_demo/blocs/accounts_bloc/accounts_bloc.dart';
 import 'package:banking_demo/blocs/accounts_bloc/accounts_state.dart';
-import 'package:banking_demo/models/accounts_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

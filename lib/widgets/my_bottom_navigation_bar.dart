@@ -1,5 +1,6 @@
 import 'package:banking_demo/screens/accounts/accounts_screen.dart';
 import 'package:banking_demo/screens/home/home_screen.dart';
+import 'package:banking_demo/screens/services/services_screen.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
@@ -20,7 +21,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
       body: [
         HomeScreen(name: widget.name ?? ''),
         const AccountsScreen(),
-        Center(child: Text('services'))
+        const ServicesScreen()
       ][_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: List.generate(3, (i) => BottomNavigationBarItem(
