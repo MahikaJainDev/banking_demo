@@ -3,16 +3,16 @@ import 'package:banking_demo/screens/home/home_screen.dart';
 import 'package:banking_demo/screens/services/services_screen.dart';
 import 'package:flutter/material.dart';
 
-class MyBottomNavigationBar extends StatefulWidget {
-  const MyBottomNavigationBar({super.key, this.name});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key, this.name});
 
   final String? name;
 
   @override
-  State<MyBottomNavigationBar> createState() => _MyBottomNavigationBarState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
+class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   @override

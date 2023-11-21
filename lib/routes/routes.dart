@@ -1,11 +1,13 @@
 import 'package:banking_demo/models/accounts_model.dart';
 import 'package:banking_demo/screens/accounts/transactions_screen.dart';
 import 'package:banking_demo/screens/services/contacts_screen.dart';
-import 'package:banking_demo/widgets/my_bottom_navigation_bar.dart';
+import 'package:banking_demo/screens/services/pdf_screen.dart';
+import 'package:banking_demo/screens/services/statements_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../screens/login_screen.dart';
+import '../screens/main_screen.dart';
 import '../screens/onboarding_screen.dart';
 
 final GoRouter router = GoRouter(
@@ -25,7 +27,7 @@ final GoRouter router = GoRouter(
         GoRoute(
             path: 'bottomNavigationBar',
           builder: (BuildContext context, GoRouterState state) {
-              return MyBottomNavigationBar(name: state.extra as String?,);
+              return MainScreen(name: state.extra as String?,);
           }
         ),
         GoRoute(
@@ -38,6 +40,18 @@ final GoRouter router = GoRouter(
             path: 'contacts',
             builder: (BuildContext context, GoRouterState state) {
               return const ContactsScreen();
+            }
+        ),
+        GoRoute(
+            path: 'statements',
+            builder: (BuildContext context, GoRouterState state) {
+              return const StatementsScreen();
+            }
+        ),
+        GoRoute(
+            path: 'pdfScreen',
+            builder: (BuildContext context, GoRouterState state) {
+              return const PdfScreen();
             }
         ),
       ],

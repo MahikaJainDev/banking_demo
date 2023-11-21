@@ -23,7 +23,7 @@ class ServicesScreen extends StatelessWidget {
               ),
             );
           }),
-          _ServicesTile(label: 'Statements', onTap: (){}),
+          _ServicesTile(label: 'Statements', onTap: () => context.push('/statements')),
           _ServicesTile(label: 'Contacts', onTap: () => context.push('/contacts')),
         ],
       ),

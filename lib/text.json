@@ -1,21 +1,17 @@
 {
   "__typename": "Query",
-  "transactions": [
+  "statements": [
     {
-      "__typename": "Transaction",
-      "date": "1998-10-19",
-      "description": "Reprehenderitverototam",
-      "amount": 19.481514813378453,
-      "fromAccount": "Checking",
-      "toAccount": "External"
+      "__typename": "Statement",
+      "date": "2020-6-23",
+      "description": "Quivoluptatibusducimus",
+      "amount": -29635.95800101757
     },
     {
-      "__typename": "Transaction",
-      "date": "1995-10-02",
-      "description": "Sitlabore",
-      "amount": -383.544297888875,
-      "fromAccount": "CreditCard",
-      "toAccount": "External"
+      "__typename": "Statement",
+      "date": "2023-4-19",
+      "description": "Utper",
+      "amount": 22950.738994404674
     }
-    ]
-  }
+  ]
+}

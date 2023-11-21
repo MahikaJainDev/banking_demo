@@ -58,3 +58,14 @@ query getContacts {
   contacts
   }
 """;
+
+const getStatements = """
+query getStatements {
+  statements {
+  date
+  description
+  amount
+    }
+}
+
+""";
