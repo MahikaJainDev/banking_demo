@@ -3,9 +3,9 @@ import 'package:banking_demo/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
-  const MyBottomNavigationBar({super.key, this.extra});
+  const MyBottomNavigationBar({super.key, this.name});
 
-  final String? extra;
+  final String? name;
 
   @override
   State<MyBottomNavigationBar> createState() => _MyBottomNavigationBarState();
@@ -18,7 +18,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: [
-        HomeScreen(name: widget.extra ?? ''),
+        HomeScreen(name: widget.name ?? ''),
         const AccountsScreen(),
         Center(child: Text('services'))
       ][_selectedIndex],

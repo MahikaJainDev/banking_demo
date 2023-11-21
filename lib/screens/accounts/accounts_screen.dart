@@ -44,7 +44,7 @@ class AccountsScreen extends StatelessWidget {
               child: _AccountsTile(
                   data: state.accountsData[index],
                 onTap: (){
-                    context.go('/transactions', extra: state.accountsData[index]);
+                    context.push('/transactions', extra: state.accountsData[index]);
                 },
               ),
             ),

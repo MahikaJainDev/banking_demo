@@ -9,8 +9,60 @@ class TransactionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(data!.balance!.toString()),
+      body: DefaultTabController(
+        length: 2,
+        child: Column(
+          children: [
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const CloseButton(),
+                        Column(
+                          children: [
+                            Text('Account Number:',
+                            style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            Text(data.accountNumber!)
+                          ],
+                        ),
+                        Column(
+                          children: [
+                          Text('Balance:',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Text(data.balance!.toString())
+                        ],)
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            TabBar(
+                tabs: [
+                  Tab(text: 'Transactions',),
+                  Tab(text: 'Details',)
+                ]),
+            Expanded(
+                child: TabBarView(
+                  children: [
+                    Container(
+                      color: Colors.pinkAccent,
+                    ),
+                    Container(
+                      color: Colors.orange,
+                    )
+                  ],
+                )
+            )
+          ],
+        ),
       ),
     );
   }
