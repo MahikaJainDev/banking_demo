@@ -10,7 +10,7 @@ class StatementCubit extends Cubit<StatementState> {
 
   StatementRepository statementRepository = StatementRepository();
   final List<StatementData> _statements = [];
-  final Set<int> _years = {};
+  final List<int> _years = [2023,2022,2021,2020,2019];
 
   void fetchStatementsData() async {
     try{
@@ -20,9 +20,6 @@ class StatementCubit extends Cubit<StatementState> {
         return;
       }
       _statements.addAll(statements);
-      for(StatementData statementData in statements){
-        _years.add(statementData.getDateTime.year);
-      }
       emit(StatementLoadedState(statements, _years, null));
     } catch(ex) {
       emit(StatementErrorState('Something went wrong!'));

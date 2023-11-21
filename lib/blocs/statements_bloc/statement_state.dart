@@ -6,7 +6,7 @@ class StatementLoadingState extends StatementState {}
 
 class StatementLoadedState extends StatementState {
   final List<StatementData> statementsData;
-  final Set<int> years;
+  final List<int> years;
   final int? selectedYear;
 
   StatementLoadedState(this.statementsData, this.years, this.selectedYear);
