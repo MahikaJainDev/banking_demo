@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
             child: Text('Something went wrong!'),
           );
         }
-        Home data = state.homeData.home!;
+        HomeData data = state.homeData;
         return CustomScrollView(
           slivers: [
             SliverAppBar(

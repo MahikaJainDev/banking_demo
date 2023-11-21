@@ -2,17 +2,17 @@ import 'transaction_model.dart';
 
 class HomeDataModel {
   String? sTypename;
-  Home? home;
+  HomeData? home;
 
   HomeDataModel({this.sTypename, this.home});
 
   HomeDataModel.fromJson(Map<String, dynamic> json) {
     sTypename = json['__typename'];
-    home = json['home'] != null ? Home.fromJson(json['home']) : null;
+    home = json['home'] != null ? HomeData.fromJson(json['home']) : null;
   }
 }
 
-class Home {
+class HomeData {
   String? _name;
   String? _currency;
   String? _accountNumber;
@@ -21,7 +21,7 @@ class Home {
   List<TransactionsData>? _recentTransactions;
   List<TransactionsData>? _upcomingBills;
 
-  Home.fromJson(Map<String, dynamic> json) {
+  HomeData.fromJson(Map<String, dynamic> json) {
     _name = json['name'];
     _accountNumber = json['accountNumber'];
     _balance = json['balance'];

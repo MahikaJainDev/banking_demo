@@ -12,7 +12,7 @@ class HomeDataCubit extends Cubit<HomeDataState> {
 
   void fetchHome() async {
     try {
-      HomeDataModel? homeData = await homeRepository.fetchHomeData();
+      HomeData? homeData = await homeRepository.fetchHomeData();
       if(homeData == null){
         emit(HomeDataErrorState("Something went wrong!"));
         return;

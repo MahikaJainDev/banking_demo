@@ -5,7 +5,7 @@ abstract class HomeDataState {}
 class HomeDataLoadingState extends HomeDataState {}
 
 class HomeDataLoadedState extends HomeDataState {
-  final HomeDataModel homeData;
+  final HomeData homeData;
 
   HomeDataLoadedState(this.homeData);
 }
