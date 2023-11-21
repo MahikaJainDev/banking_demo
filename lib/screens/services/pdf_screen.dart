@@ -9,6 +9,7 @@ class PdfScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Statement PDF'),
       ),
+      body: Container()
     );
   }
 }

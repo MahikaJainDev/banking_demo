@@ -36,6 +36,27 @@ class StatementsScreen extends StatelessWidget {
                 primary: true,
               ),
               SliverList(
+                delegate: SliverChildListDelegate([
+                  Center(
+                    child: DropdownButton<int>(
+                      hint: const Text('Select Date Filter'),
+                      items: [
+                        const DropdownMenuItem<int>(
+                          value: -11,
+                          child: Text('Clear'),
+                        ),
+                        ...state.years.map((e) => DropdownMenuItem<int>(
+                          value: e,
+                          child: Text(e.toString()),
+                        )).toList()
+                      ],
+                      value: state.selectedYear,
+                      onChanged: (int? value) => context.read<StatementCubit>().applyFilter(value)
+                    ),
+                  ),
+                ]),
+              ),
+              SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => _StatementListTile(
                     data: state.statementsData[index],

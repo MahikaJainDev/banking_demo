@@ -9,17 +9,40 @@ class StatementCubit extends Cubit<StatementState> {
   }
 
   StatementRepository statementRepository = StatementRepository();
+  final List<StatementData> _statements = [];
+  final Set<int> _years = {};
 
   void fetchStatementsData() async {
     try{
-      List<StatementData>? statementsData = await statementRepository.fetchStatements();
-      if(statementsData == null) {
+      List<StatementData>? statements = await statementRepository.fetchStatements();
+      if(statements == null) {
         emit(StatementErrorState('Something went wrong!'));
         return;
       }
-      emit(StatementLoadedState(statementsData));
+      _statements.addAll(statements);
+      for(StatementData statementData in statements){
+        _years.add(statementData.getDateTime.year);
+      }
+      emit(StatementLoadedState(statements, _years, null));
     } catch(ex) {
       emit(StatementErrorState('Something went wrong!'));
     }
+  }
+
+  void applyFilter(int? selectedYear){
+    if(selectedYear == null){
+      return;
+    }
+    if(selectedYear == -11){
+      emit(StatementLoadedState(_statements, _years, null));
+      return;
+    }
+    List<StatementData> temp = [];
+    for(StatementData data in _statements){
+      if(data.getDateTime.year == selectedYear){
+        temp.add(data);
+      }
+    }
+    emit(StatementLoadedState(temp, _years, selectedYear));
   }
 }
