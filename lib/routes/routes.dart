@@ -22,7 +22,7 @@ final GoRouter router = GoRouter(
         GoRoute(
             path: 'bottomNavigationBar',
           builder: (BuildContext context, GoRouterState state) {
-              return MyBottomNavigationBar();
+              return MyBottomNavigationBar(extra: state.extra as String?,);
           }
         ),
       ],

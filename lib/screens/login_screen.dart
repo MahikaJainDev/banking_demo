@@ -51,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextFormField(
+                      controller: nameController,
                       decoration: InputDecoration(
                         hintText: 'username',
                         hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -92,6 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      controller: passwordController,
                       obscureText: isVisible ? false : true,
                       decoration: InputDecoration(
                           hintText: 'password',
@@ -147,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ElevatedButton(
                         onPressed: (){
                           if(_formKey.currentState!.validate()) {
-                            context.go('/bottomNavigationBar');
+                            context.pushReplacement('/bottomNavigationBar', extra: nameController.text);
                           }
                         },
                         style: ButtonStyle(

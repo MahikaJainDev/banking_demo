@@ -8,8 +8,9 @@ import '../blocs/home_data_cubit.dart';
 import '../widgets/recent_transactions.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, this.name});
 
+  final String? name;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeDataCubit, HomeDataState>(builder: (context, state) {
@@ -32,7 +33,7 @@ class HomeScreen extends StatelessWidget {
       return CustomScrollView(
         slivers: [
           SliverAppBar(
-            title: Text('Hello, '),
+            title: Text('Hello, $name'),
           ),
           SliverList(
             delegate: SliverChildListDelegate([
