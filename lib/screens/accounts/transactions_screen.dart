@@ -1,6 +1,8 @@
+import 'package:banking_demo/screens/accounts/transaction_list.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/accounts_model.dart';
+import 'accounts_list_tile.dart';
 
 class TransactionsScreen extends StatelessWidget {
   final AccountsData data;
@@ -52,11 +54,11 @@ class TransactionsScreen extends StatelessWidget {
             Expanded(
                 child: TabBarView(
                   children: [
-                    Container(
-                      color: Colors.pinkAccent,
-                    ),
-                    Container(
-                      color: Colors.orange,
+                    TransactionList(),
+                    Column(
+                      children: [
+                        AccountsListTile(data: data)
+                      ],
                     )
                   ],
                 )

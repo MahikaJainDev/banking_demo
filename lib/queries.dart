@@ -40,3 +40,15 @@ query getAccounts {
     }
 }
 """;
+
+const getTransactions = """
+query getTransactions {
+   transactions {
+     date
+     description
+     amount
+     fromAccount
+     toAccount
+     }
+}
+""";

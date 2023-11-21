@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import 'accounts_list_tile.dart';
+
 class AccountsScreen extends StatelessWidget {
   const AccountsScreen({super.key});
 
@@ -17,7 +19,6 @@ class AccountsScreen extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-        print('state is : $state');
         if(state is AccountsErrorState) {
           return const Center(
             child: Text('Something went wrong!'),
@@ -41,7 +42,7 @@ class AccountsScreen extends StatelessWidget {
               right: 8.0,
                 bottom: 8.0
               ),
-              child: _AccountsTile(
+              child: AccountsListTile(
                   data: state.accountsData[index],
                 onTap: (){
                     context.push('/transactions', extra: state.accountsData[index]);
@@ -56,42 +57,4 @@ class AccountsScreen extends StatelessWidget {
     },
     );
   }
-}
-
-class _AccountsTile extends StatelessWidget {
-  final AccountsData data;
-  final VoidCallback onTap;
-  const _AccountsTile({super.key, required this.data, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) => Card(
-    child: InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            _buildText(context, 'Account Number', data.accountNumber),
-            _buildText(context, 'Account Type', data.accountType),
-            _buildText(context, 'Balance', data.balance?.toString()),
-            _buildText(context, 'Account Holder', data.accountHolder),
-          ],
-        ),
-      ),
-    ),
-  );
-
-  _buildText(BuildContext context, String title, String? value) => RichText(
-    text: TextSpan(
-      text: '$title: ',
-      style: Theme.of(context).textTheme.titleSmall,
-      children: [
-        TextSpan(
-            text: '$value',
-            style: Theme.of(context).textTheme.bodyMedium
-        ),
-      ],
-    ),
-  );
 }
