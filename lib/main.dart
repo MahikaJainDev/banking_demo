@@ -16,23 +16,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => HomeDataCubit()),
-        BlocProvider(create: (context) => AccountsCubit()),
-        BlocProvider(create: (context) => TransactionCubit()),
-        BlocProvider(create: (context) => ContactCubit()),
-        BlocProvider(create: (context) => StatementCubit())
-      ],
-      child: MaterialApp.router(
-        routerConfig: router,
-        title: 'Banking Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff31a062)),
-          useMaterial3: true,
-        ),
-        debugShowCheckedModeBanner: false,
+    return MaterialApp.router(
+      routerConfig: router,
+      title: 'Banking Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff31a062)),
+        useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

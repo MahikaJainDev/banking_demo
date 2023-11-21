@@ -12,25 +12,28 @@ class ContactsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Contacts'),
       ),
-      body: BlocBuilder<ContactCubit, ContactState>(
-        builder: (context, state) {
-          if(state is ContactLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+      body: BlocProvider(
+        create: (context) => ContactCubit(),
+        child: BlocBuilder<ContactCubit, ContactState>(
+          builder: (context, state) {
+            if(state is ContactLoadingState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if(state is ContactErrorState) {
+              return const Center(
+                child: Text('No Contacts found!'),
+              );
+            }
+            if(state is! ContactLoadedState){
+              return const Center(
+                child: Text('No Contacts found!'),
+              );
+            }
+            return Container();
           }
-          if(state is ContactErrorState) {
-            return const Center(
-              child: Text('No Contacts found!'),
-            );
-          }
-          if(state is! ContactLoadedState){
-            return const Center(
-              child: Text('No Contacts found!'),
-            );
-          }
-          return Container();
-        }
+        ),
       ),
     );
   }

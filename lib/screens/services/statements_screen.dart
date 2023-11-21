@@ -12,62 +12,65 @@ class StatementsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<StatementCubit, StatementState>(
-        builder: (context, state) {
-          if (state is StatementLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (state is StatementErrorState) {
-            return const Center(
-              child: Text('Something went wrong!'),
-            );
-          }
-          if (state is! StatementLoadedState) {
-            return const Center(
-              child: Text('Something went wrong!'),
-            );
-          }
-          return CustomScrollView(
-            slivers: [
-              const SliverAppBar(
-                title: Text('Statements'),
-                primary: true,
-              ),
-              SliverList(
-                delegate: SliverChildListDelegate([
-                  Center(
-                    child: DropdownButton<int>(
-                      hint: const Text('Select Date Filter'),
-                      items: [
-                        const DropdownMenuItem<int>(
-                          value: -11,
-                          child: Text('Clear'),
-                        ),
-                        ...state.years.map((e) => DropdownMenuItem<int>(
-                          value: e,
-                          child: Text(e.toString()),
-                        )).toList()
-                      ],
-                      value: state.selectedYear,
-                      onChanged: (int? value) => context.read<StatementCubit>().applyFilter(value)
+      body: BlocProvider(
+        create: (context) => StatementCubit(),
+        child: BlocBuilder<StatementCubit, StatementState>(
+          builder: (context, state) {
+            if (state is StatementLoadingState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (state is StatementErrorState) {
+              return const Center(
+                child: Text('Something went wrong!'),
+              );
+            }
+            if (state is! StatementLoadedState) {
+              return const Center(
+                child: Text('Something went wrong!'),
+              );
+            }
+            return CustomScrollView(
+              slivers: [
+                const SliverAppBar(
+                  title: Text('Statements'),
+                  primary: true,
+                ),
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    Center(
+                      child: DropdownButton<int>(
+                        hint: const Text('Select Date Filter'),
+                        items: [
+                          const DropdownMenuItem<int>(
+                            value: -11,
+                            child: Text('Clear'),
+                          ),
+                          ...state.years.map((e) => DropdownMenuItem<int>(
+                            value: e,
+                            child: Text(e.toString()),
+                          )).toList()
+                        ],
+                        value: state.selectedYear,
+                        onChanged: (int? value) => context.read<StatementCubit>().applyFilter(value)
+                      ),
                     ),
-                  ),
-                ]),
-              ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) => _StatementListTile(
-                    data: state.statementsData[index],
-                    onTap: () => context.push('/pdfScreen'),
-                  ),
-                  childCount: state.statementsData.length
+                  ]),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => _StatementListTile(
+                      data: state.statementsData[index],
+                      onTap: () => context.push('/pdfScreen'),
+                    ),
+                    childCount: state.statementsData.length
+                  )
                 )
-              )
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
     );
   }

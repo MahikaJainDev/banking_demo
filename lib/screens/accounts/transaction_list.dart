@@ -9,34 +9,37 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TransactionCubit, TransactionState>(
-      builder: (context, state) {
-        if(state is TransactionsLoadingState) {
-          return const Center(
-            child: CircularProgressIndicator(),
+    return BlocProvider(
+      create: (context) => TransactionCubit(),
+      child: BlocBuilder<TransactionCubit, TransactionState>(
+        builder: (context, state) {
+          if(state is TransactionsLoadingState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if(state is TransactionsErrorState) {
+            return const Center(
+              child: Text('Something went wrong!'),
+            );
+          }
+          if(state is! TransationsLoadedState) {
+            return const Center(
+              child: Text('Something went wrong!'),
+            );
+          }
+          return CustomScrollView(
+            slivers: [
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => TransactionListTile(transaction: state.transactionsData[index]),
+                  childCount: state.transactionsData.length
+                ),
+              )
+            ],
           );
         }
-        if(state is TransactionsErrorState) {
-          return const Center(
-            child: Text('Something went wrong!'),
-          );
-        }
-        if(state is! TransationsLoadedState) {
-          return const Center(
-            child: Text('Something went wrong!'),
-          );
-        }
-        return CustomScrollView(
-          slivers: [
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => TransactionListTile(transaction: state.transactionsData[index]),
-                childCount: state.transactionsData.length
-              ),
-            )
-          ],
-        );
-      }
+      ),
     );
   }
 }
