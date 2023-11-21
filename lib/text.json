@@ -1,0 +1,21 @@
+{
+  "__typename": "Query",
+  "accounts": [
+    {
+      "__typename": "Account",
+      "id": "77e7b3e0-8189-4d03-b803-bd51abd1436a",
+      "accountNumber": 7491562885,
+      "accountType": "Checking",
+      "balance": 7517.36,
+      "accountHolder": "KatrineGreen"
+    },
+    {
+      "__typename": "Account",
+      "id": "d5b73293-e16c-4bb6-a446-539562e66274",
+      "accountNumber": 1630886049,
+      "accountType": "Savings",
+      "balance": 9384.62,
+      "accountHolder": "RachelleTromp"
+    }
+  ]
+}

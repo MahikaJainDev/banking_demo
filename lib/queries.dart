@@ -28,3 +28,15 @@ query getHome {
           }
           }
       }""";
+
+const getAccounts = """
+query getAccounts {
+  accounts {
+    id
+    accountNumber
+    accountType
+    balance
+    accountHolder
+    }
+}
+""";

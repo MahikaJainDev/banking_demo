@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/home_data_model.dart';
+import '../../models/home_data_model.dart';
 
 class RecentTransactionsWidget extends StatelessWidget {
   const RecentTransactionsWidget({super.key, required this.recentTransactions});

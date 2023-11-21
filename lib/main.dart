@@ -1,9 +1,7 @@
-import 'package:banking_demo/blocs/home_data_cubit.dart';
-import 'package:banking_demo/connection/connection.dart';
-import 'package:banking_demo/repositories/home_repository.dart';
+import 'package:banking_demo/blocs/accounts_bloc/accounts_bloc.dart';
+import 'package:banking_demo/blocs/home_bloc/home_data_bloc.dart';
 import 'package:banking_demo/routes/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
@@ -18,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => HomeDataCubit()),
+        BlocProvider(create: (context) => AccountsCubit()),
       ],
       child: MaterialApp.router(
         routerConfig: router,

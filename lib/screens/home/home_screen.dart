@@ -1,11 +1,12 @@
-import 'package:banking_demo/blocs/home_data_state.dart';
+
 import 'package:banking_demo/models/home_data_model.dart';
-import 'package:banking_demo/widgets/upcoming_bills.dart';
+import 'package:banking_demo/screens/home/upcoming_bills.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../blocs/home_data_cubit.dart';
-import '../widgets/recent_transactions.dart';
+import '../../blocs/home_bloc/home_data_bloc.dart';
+import '../../blocs/home_bloc/home_data_state.dart';
+import 'recent_transactions.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key, this.name});

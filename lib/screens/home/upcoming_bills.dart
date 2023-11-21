@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/home_data_model.dart';
+import '../../models/home_data_model.dart';
 
 class UpcomingBillsWidget extends StatelessWidget {
   const UpcomingBillsWidget({super.key, required this.upcomingBills});
