@@ -35,6 +35,8 @@ class HomeScreen extends StatelessWidget {
         slivers: [
           SliverAppBar(
             title: Text('Hello, $name'),
+            floating: true,
+            primary: true,
           ),
           SliverList(
             delegate: SliverChildListDelegate([
@@ -90,8 +92,9 @@ class HomeScreen extends StatelessWidget {
               )
             ]),
           ),
-          const SliverAppBar(
+           SliverAppBar(
             title: Text('Recent Transactions'),
+            primary: false,
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
@@ -107,6 +110,7 @@ class HomeScreen extends StatelessWidget {
           ),
           const SliverAppBar(
             title: Text('Upcoming Bills'),
+            primary: false,
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
