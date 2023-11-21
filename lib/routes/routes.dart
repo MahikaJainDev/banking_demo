@@ -1,5 +1,6 @@
 import 'package:banking_demo/models/accounts_model.dart';
 import 'package:banking_demo/screens/accounts/transactions_screen.dart';
+import 'package:banking_demo/screens/services/contacts_screen.dart';
 import 'package:banking_demo/widgets/my_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -31,6 +32,12 @@ final GoRouter router = GoRouter(
             path: 'transactions',
             builder: (BuildContext context, GoRouterState state) {
               return TransactionsScreen(data: state.extra as AccountsData);
+            }
+        ),
+        GoRoute(
+            path: 'contacts',
+            builder: (BuildContext context, GoRouterState state) {
+              return const ContactsScreen();
             }
         ),
       ],

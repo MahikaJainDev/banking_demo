@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ServicesScreen extends StatelessWidget {
   const ServicesScreen({super.key});
@@ -23,7 +24,7 @@ class ServicesScreen extends StatelessWidget {
             );
           }),
           _ServicesTile(label: 'Statements', onTap: (){}),
-          _ServicesTile(label: 'Contacts', onTap: (){}),
+          _ServicesTile(label: 'Contacts', onTap: () => context.push('/contacts')),
         ],
       ),
     );

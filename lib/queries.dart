@@ -52,3 +52,9 @@ query getTransactions {
      }
 }
 """;
+
+const getContacts = """
+query getContacts {
+  contacts
+  }
+""";
