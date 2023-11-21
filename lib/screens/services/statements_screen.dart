@@ -1,7 +1,7 @@
 import 'package:banking_demo/blocs/statements_bloc/statement_state.dart';
 import 'package:banking_demo/blocs/statements_bloc/statements_bloc.dart';
+import 'package:banking_demo/others/extension_methods.dart';
 import 'package:banking_demo/models/statement_model.dart';
-import 'package:banking_demo/extension_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -24,24 +24,26 @@ class StatementsScreen extends StatelessWidget {
               child: Text('Something went wrong!'),
             );
           }
-          if (!(state is StatementLoadedState)) {
+          if (state is! StatementLoadedState) {
             return const Center(
               child: Text('Something went wrong!'),
             );
           }
           return CustomScrollView(
             slivers: [
-              SliverAppBar(
+              const SliverAppBar(
                 title: Text('Statements'),
                 primary: true,
               ),
               SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                      (context, index) => _StatementListTile(
-                            data: state.statementsData[index],
-                            onTap: () => context.push('/pdfScreen'),
-                          ),
-                      childCount: state.statementsData.length))
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => _StatementListTile(
+                    data: state.statementsData[index],
+                    onTap: () => context.push('/pdfScreen'),
+                  ),
+                  childCount: state.statementsData.length
+                )
+              )
             ],
           );
         },
@@ -52,9 +54,9 @@ class StatementsScreen extends StatelessWidget {
 
 class _StatementListTile extends StatelessWidget {
   const _StatementListTile(
-      {super.key, required this.data, required this.onTap});
+      {required this.data, required this.onTap});
 
-  final StatementsData data;
+  final StatementData data;
   final VoidCallback onTap;
 
   @override
@@ -73,15 +75,15 @@ class _StatementListTile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildText(context, 'Date', '\n${data.date?.asString(addYear: true, addWeekDay: true)}'),
-                    _buildText(context, 'Amount', '\n${data.amount?.toStringAsFixed(2)}'),
+                    _buildText(context, 'Date', '\n${data.getDateTime.asString(addYear: true, addWeekDay: true)}'),
+                    _buildText(context, 'Amount', '\n${data.getAmount.toStringAsFixed(2)}'),
                   ],
                 ),
                 const SizedBox(
                   height: 12.0,
                 ),
                 Text(
-                  data.description ?? '',
+                  data.getDescription,
                   textAlign: TextAlign.justify,
                 )
               ],

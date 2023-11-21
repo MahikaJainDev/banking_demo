@@ -5,7 +5,7 @@ abstract class StatementState {}
 class StatementLoadingState extends StatementState {}
 
 class StatementLoadedState extends StatementState {
-  final List<StatementsData> statementsData;
+  final List<StatementData> statementsData;
 
   StatementLoadedState(this.statementsData);
 }

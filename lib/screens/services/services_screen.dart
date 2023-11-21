@@ -8,7 +8,7 @@ class ServicesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Services'),
+        title: const Text('Services'),
       ),
       body: ListView(
         children: [
@@ -32,7 +32,7 @@ class ServicesScreen extends StatelessWidget {
 }
 
 class _ServicesTile extends StatelessWidget {
-  const _ServicesTile({super.key, required this.label, required this.onTap});
+  const _ServicesTile({required this.label, required this.onTap});
 
   final String label;
   final VoidCallback onTap;

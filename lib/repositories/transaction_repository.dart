@@ -1,11 +1,11 @@
 
 import 'package:banking_demo/connection/connection.dart';
 import 'package:banking_demo/models/transaction_model.dart';
-import 'package:banking_demo/queries.dart';
+import 'package:banking_demo/others/queries.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class TransactionsRepository {
-  GraphQLClient _client = clientToQuery();
+  final GraphQLClient _client = clientToQuery();
 
   Future<List<TransactionsData>?> fetchTransactions() async {
     QueryResult result = await _client.query(

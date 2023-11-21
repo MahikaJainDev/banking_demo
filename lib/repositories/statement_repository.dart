@@ -1,13 +1,13 @@
 import 'package:banking_demo/models/statement_model.dart';
-import 'package:banking_demo/queries.dart';
+import 'package:banking_demo/others/queries.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../connection/connection.dart';
 
 class StatementRepository {
-  GraphQLClient _client = clientToQuery();
+  final GraphQLClient _client = clientToQuery();
   
-  Future<List<StatementsData>?> fetchStatements() async {
+  Future<List<StatementData>?> fetchStatements() async {
     QueryResult result = await _client.query(
       QueryOptions(document: gql(getStatements))
     );
@@ -18,9 +18,9 @@ class StatementRepository {
     if(map == null) {
       return null;
     }
-    List<StatementsData> list = [];
+    List<StatementData> list = [];
     for(Map<String, dynamic> element in map['statements']) {
-      list.add(StatementsData.fromJson(element));
+      list.add(StatementData.fromJson(element));
     }
     return list;
   }

@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(),
+          const SliverAppBar(),
           SliverList(delegate: SliverChildListDelegate([
           Padding(
             padding: const EdgeInsets.all(8.0),

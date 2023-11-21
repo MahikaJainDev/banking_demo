@@ -10,7 +10,7 @@ class ContactsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contacts'),
+        title: const Text('Contacts'),
       ),
       body: BlocBuilder<ContactCubit, ContactState>(
         builder: (context, state) {
@@ -20,12 +20,12 @@ class ContactsScreen extends StatelessWidget {
             );
           }
           if(state is ContactErrorState) {
-            return Center(
+            return const Center(
               child: Text('No Contacts found!'),
             );
           }
-          if(!(state is ContactLoadedState)){
-            return Center(
+          if(state is! ContactLoadedState){
+            return const Center(
               child: Text('No Contacts found!'),
             );
           }

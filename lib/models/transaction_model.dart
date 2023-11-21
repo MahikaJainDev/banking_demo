@@ -1,28 +1,23 @@
 class TransactionsData {
-  String? sTypename;
-  DateTime? date;
-  String? description;
-  num? amount;
-  String? fromAccount;
-  String? toAccount;
-
-  TransactionsData(
-      {this.sTypename,
-        this.date,
-        this.description,
-        this.amount,
-        this.fromAccount,
-        this.toAccount});
+  String? _description;
+  String? _fromAccount;
+  String? _toAccount;
+  DateTime? _date;
+  num? _amount;
 
   TransactionsData.fromJson(Map<String, dynamic> json) {
-    sTypename = json['__typename'];
     if(json['date'] != null){
       List<String> str = json['date'].split('-');
-      date = DateTime(int.parse(str[0]), int.parse(str[1]), int.parse(str[2]));
+      _date = DateTime(int.parse(str[0]), int.parse(str[1]), int.parse(str[2]));
     }
-    description = json['description'];
-    amount = json['amount'];
-    fromAccount = json['fromAccount'];
-    toAccount = json['toAccount'];
+    _description = json['description'];
+    _amount = json['amount'];
+    _fromAccount = json['fromAccount'];
+    _toAccount = json['toAccount'];
   }
+  String get getDescription => _description ?? '';
+  String get getFromAccount => _fromAccount ?? '';
+  String get getToAccount => _toAccount ?? '';
+  num get getAmount => _amount ?? 0;
+  DateTime get getDateTime => _date ?? DateTime.now();
 }

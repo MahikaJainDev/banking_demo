@@ -12,7 +12,7 @@ class StatementCubit extends Cubit<StatementState> {
 
   void fetchStatementsData() async {
     try{
-      List<StatementsData>? statementsData = await statementRepository.fetchStatements();
+      List<StatementData>? statementsData = await statementRepository.fetchStatements();
       if(statementsData == null) {
         emit(StatementErrorState('Something went wrong!'));
         return;

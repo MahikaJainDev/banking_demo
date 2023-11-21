@@ -1,3 +1,3 @@
 class ContactData {
-  ContactData.fromJson(Map);
+  ContactData.fromJson(Map map);
 }

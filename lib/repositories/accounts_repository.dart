@@ -1,11 +1,11 @@
 
 import 'package:banking_demo/connection/connection.dart';
 import 'package:banking_demo/models/accounts_model.dart';
-import 'package:banking_demo/queries.dart';
+import 'package:banking_demo/others/queries.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class AccountsRepository {
-  GraphQLClient _client = clientToQuery();
+  final GraphQLClient _client = clientToQuery();
   List<AccountsData>? accounts;
 
   Future<List<AccountsData>?> fetchAccounts() async {

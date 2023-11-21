@@ -1,25 +1,20 @@
 class AccountsData {
-  String? sTypename;
-  String? id;
-  String? accountNumber;
-  String? accountType;
-  double? balance;
-  String? accountHolder;
-
-  AccountsData(
-      {this.sTypename,
-        this.id,
-        this.accountNumber,
-        this.accountType,
-        this.balance,
-        this.accountHolder});
+  String? _id;
+  String? _accountNumber;
+  String? _accountType;
+  double? _balance;
+  String? _accountHolder;
 
   AccountsData.fromJson(Map<String, dynamic> json) {
-    sTypename = json['__typename'];
-    id = json['id'];
-    accountNumber = json['accountNumber'];
-    accountType = json['accountType'];
-    balance = json['balance'];
-    accountHolder = json['accountHolder'];
+    _id = json['id'];
+    _accountNumber = json['accountNumber'];
+    _accountType = json['accountType'];
+    _balance = json['balance'];
+    _accountHolder = json['accountHolder'];
   }
+
+  String get getAccountNumber => _accountNumber ?? '';
+  String get getAccountType => _accountType ?? '';
+  double get getAccountBalance => _balance ?? 0.0;
+  String get getAccountHolder => _accountHolder ?? '';
 }

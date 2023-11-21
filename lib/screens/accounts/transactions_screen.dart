@@ -23,9 +23,9 @@ class TransactionsScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       const CloseButton(),
-                      buildRichText(context, 'Account Number', '\n${data.accountNumber}'),
+                      buildRichText(context, 'Account Number', '\n${data.getAccountNumber}'),
                       const Spacer(),
-                      buildRichText(context, 'Balance', '\n${data.balance}'),
+                      buildRichText(context, 'Balance', '\n${data.getAccountBalance.toStringAsFixed(2)}'),
                     ],
                   ),
                 ),

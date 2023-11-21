@@ -18,10 +18,10 @@ class AccountsListTile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            buildRichText(context, 'Account Number', data.accountNumber),
-            buildRichText(context, 'Account Type', data.accountType),
-            buildRichText(context, 'Balance', data.balance?.toString()),
-            buildRichText(context, 'Account Holder', data.accountHolder),
+            buildRichText(context, 'Account Number', data.getAccountNumber),
+            buildRichText(context, 'Account Type', data.getAccountType),
+            buildRichText(context, 'Balance', data.getAccountBalance.toStringAsFixed(2)),
+            buildRichText(context, 'Account Holder', data.getAccountHolder),
           ],
         ),
       ),

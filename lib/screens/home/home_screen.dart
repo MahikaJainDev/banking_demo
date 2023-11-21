@@ -50,13 +50,13 @@ class HomeScreen extends StatelessWidget {
                           buildRichText(
                             context,
                             'Account Number',
-                            '\n${data.accountNumber}'
+                            '\n${data.getAccountNumber}'
                           ),
                           const Spacer(),
                           buildRichText(
                             context,
                             'Balance',
-                            '\n${data.currency} ${data.balance}'
+                            '\n${data.getCurrency} ${data.getBalance}'
                           ),
                         ],
                       ),
@@ -66,11 +66,7 @@ class HomeScreen extends StatelessWidget {
                       buildRichText(
                         context,
                         'Address',
-                        '${data.address?.buildingNumber}, '
-                          '${data.address?.streetName}, '
-                          '${data.address?.townName}, '
-                          '${data.address?.country}, '
-                          '${data.address?.postCode}'
+                        data.getAddress?.toString()
                       ),
                     ],
                   ),
@@ -85,9 +81,9 @@ class HomeScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, i) => TransactionListTile(
-                transaction: data.recentTransactions![i]
+                transaction: data.getRecentTransactions[i]
               ),
-              childCount: data.recentTransactions?.length ?? 0,
+              childCount: data.getRecentTransactions.length ?? 0,
             ),
           ),
           const SliverAppBar(
@@ -98,9 +94,9 @@ class HomeScreen extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (context, i) => TransactionListTile(
                 transaction:
-                data.upcomingBills![i]
+                data.getUpcomingBills[i]
               ),
-              childCount: data.upcomingBills?.length ?? 0,
+              childCount: data.getUpcomingBills.length ?? 0,
             ),
           ),
         ],

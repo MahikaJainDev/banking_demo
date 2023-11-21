@@ -13,71 +13,59 @@ class HomeDataModel {
 }
 
 class Home {
-  String? sTypename;
-  String? name;
-  int? accountNumber;
-  double? balance;
-  String? currency;
-  Address? address;
-  List<TransactionsData>? recentTransactions;
-  List<TransactionsData>? upcomingBills;
-
-  Home(
-      {this.sTypename,
-        this.name,
-        this.accountNumber,
-        this.balance,
-        this.currency,
-        this.address,
-        this.recentTransactions,
-        this.upcomingBills});
+  String? _name;
+  String? _currency;
+  String? _accountNumber;
+  num? _balance;
+  Address? _address;
+  List<TransactionsData>? _recentTransactions;
+  List<TransactionsData>? _upcomingBills;
 
   Home.fromJson(Map<String, dynamic> json) {
-    sTypename = json['__typename'];
-    name = json['name'];
-    accountNumber = int.tryParse(json['accountNumber']);
-    balance = json['balance'];
-    currency = json['currency'];
-    address =
-    json['address'] != null ? Address.fromJson(json['address']) : null;
+    _name = json['name'];
+    _accountNumber = json['accountNumber'];
+    _balance = json['balance'];
+    _currency = json['currency'];
+    _address = json['address'] != null ? Address.fromJson(json['address']) : null;
     if (json['recentTransactions'] != null) {
-      recentTransactions = <TransactionsData>[];
+      _recentTransactions = <TransactionsData>[];
       json['recentTransactions'].forEach((v) {
-        recentTransactions!.add(TransactionsData.fromJson(v));
+        _recentTransactions!.add(TransactionsData.fromJson(v));
       });
     }
     if (json['upcomingBills'] != null) {
-      upcomingBills = <TransactionsData>[];
+      _upcomingBills = <TransactionsData>[];
       json['upcomingBills'].forEach((v) {
-        upcomingBills!.add(TransactionsData.fromJson(v));
+        _upcomingBills!.add(TransactionsData.fromJson(v));
       });
     }
   }
+
+  Address? get getAddress => _address;
+  String get getName => _name ?? '';
+  String get getCurrency => _currency ?? '';
+  String get getAccountNumber => _accountNumber ?? '';
+  num get getBalance => _balance ?? 0.0;
+  List<TransactionsData> get getUpcomingBills => _upcomingBills ?? [];
+  List<TransactionsData> get getRecentTransactions => _recentTransactions ?? [];
 
 }
 
 class Address {
-  String? sTypename;
-  String? streetName;
-  int? buildingNumber;
-  String? townName;
-  int? postCode;
-  String? country;
-
-  Address(
-      {this.sTypename,
-        this.streetName,
-        this.buildingNumber,
-        this.townName,
-        this.postCode,
-        this.country});
+  String? _streetName;
+  String? _country;
+  String? _townName;
+  int? _buildingNumber;
+  int? _postCode;
 
   Address.fromJson(Map<String, dynamic> json) {
-    sTypename = json['__typename'];
-    streetName = json['streetName'];
-    buildingNumber = int.tryParse(json['buildingNumber']);
-    townName = json['townName'];
-    postCode = int.tryParse(json['postCode']);
-    country = json['country'];
+    _streetName = json['streetName'];
+    _buildingNumber = int.tryParse(json['buildingNumber']);
+    _townName = json['townName'];
+    _postCode = int.tryParse(json['postCode']);
+    _country = json['country'];
   }
+
+  @override
+  String toString() => '$_buildingNumber, $_streetName, $_townName, $_country, $_postCode';
 }
