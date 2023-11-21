@@ -1,5 +1,5 @@
 import 'package:banking_demo/blocs/transactions_bloc/transaction_state.dart';
-import 'package:banking_demo/models/transactions_model.dart';
+import 'package:banking_demo/models/transaction_model.dart';
 import 'package:banking_demo/repositories/transaction_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

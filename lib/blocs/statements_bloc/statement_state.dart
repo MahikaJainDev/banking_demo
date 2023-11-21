@@ -1,4 +1,4 @@
-import '../../models/StatementModel.dart';
+import '../../models/statement_model.dart';
 
 abstract class StatementState {}
 

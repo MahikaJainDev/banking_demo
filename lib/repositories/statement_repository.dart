@@ -1,4 +1,4 @@
-import 'package:banking_demo/models/StatementModel.dart';
+import 'package:banking_demo/models/statement_model.dart';
 import 'package:banking_demo/queries.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 

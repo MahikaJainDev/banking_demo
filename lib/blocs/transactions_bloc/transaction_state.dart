@@ -1,5 +1,5 @@
 
-import 'package:banking_demo/models/transactions_model.dart';
+import 'package:banking_demo/models/transaction_model.dart';
 
 abstract class TransactionState {}
 

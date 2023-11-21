@@ -1,4 +1,5 @@
 import 'package:banking_demo/screens/accounts/transaction_list.dart';
+import 'package:banking_demo/widgets/rich_text_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/accounts_model.dart';
@@ -16,45 +17,30 @@ class TransactionsScreen extends StatelessWidget {
         child: Column(
           children: [
             SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const CloseButton(),
-                        Column(
-                          children: [
-                            Text('Account Number:',
-                            style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            Text(data.accountNumber!)
-                          ],
-                        ),
-                        Column(
-                          children: [
-                          Text('Balance:',
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          Text(data.balance!.toString())
-                        ],)
-                      ],
-                    ),
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      const CloseButton(),
+                      buildRichText(context, 'Account Number', '\n${data.accountNumber}'),
+                      const Spacer(),
+                      buildRichText(context, 'Balance', '\n${data.balance}'),
+                    ],
                   ),
                 ),
               ),
             ),
-            TabBar(
-                tabs: [
-                  Tab(text: 'Transactions',),
-                  Tab(text: 'Details',)
-                ]),
+            const TabBar(
+              tabs: [
+                Tab(text: 'Transactions',),
+                Tab(text: 'Details',)
+              ]
+            ),
             Expanded(
                 child: TabBarView(
                   children: [
-                    TransactionList(),
+                    const TransactionList(),
                     Column(
                       children: [
                         AccountsListTile(data: data)

@@ -1,6 +1,6 @@
 
 import 'package:banking_demo/connection/connection.dart';
-import 'package:banking_demo/models/transactions_model.dart';
+import 'package:banking_demo/models/transaction_model.dart';
 import 'package:banking_demo/queries.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 

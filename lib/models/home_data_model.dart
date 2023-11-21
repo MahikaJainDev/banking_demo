@@ -1,3 +1,5 @@
+import 'transaction_model.dart';
+
 class HomeDataModel {
   String? sTypename;
   Home? home;
@@ -6,16 +8,7 @@ class HomeDataModel {
 
   HomeDataModel.fromJson(Map<String, dynamic> json) {
     sTypename = json['__typename'];
-    home = json['home'] != null ? new Home.fromJson(json['home']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['__typename'] = this.sTypename;
-    if (this.home != null) {
-      data['home'] = this.home!.toJson();
-    }
-    return data;
+    home = json['home'] != null ? Home.fromJson(json['home']) : null;
   }
 }
 
@@ -26,8 +19,8 @@ class Home {
   double? balance;
   String? currency;
   Address? address;
-  List<RecentTransactions>? recentTransactions;
-  List<UpcomingBills>? upcomingBills;
+  List<TransactionsData>? recentTransactions;
+  List<TransactionsData>? upcomingBills;
 
   Home(
       {this.sTypename,
@@ -46,41 +39,21 @@ class Home {
     balance = json['balance'];
     currency = json['currency'];
     address =
-    json['address'] != null ? new Address.fromJson(json['address']) : null;
+    json['address'] != null ? Address.fromJson(json['address']) : null;
     if (json['recentTransactions'] != null) {
-      recentTransactions = <RecentTransactions>[];
+      recentTransactions = <TransactionsData>[];
       json['recentTransactions'].forEach((v) {
-        recentTransactions!.add(new RecentTransactions.fromJson(v));
+        recentTransactions!.add(TransactionsData.fromJson(v));
       });
     }
     if (json['upcomingBills'] != null) {
-      upcomingBills = <UpcomingBills>[];
+      upcomingBills = <TransactionsData>[];
       json['upcomingBills'].forEach((v) {
-        upcomingBills!.add(new UpcomingBills.fromJson(v));
+        upcomingBills!.add(TransactionsData.fromJson(v));
       });
     }
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['__typename'] = this.sTypename;
-    data['name'] = this.name;
-    data['accountNumber'] = this.accountNumber;
-    data['balance'] = this.balance;
-    data['currency'] = this.currency;
-    if (this.address != null) {
-      data['address'] = this.address!.toJson();
-    }
-    if (this.recentTransactions != null) {
-      data['recentTransactions'] =
-          this.recentTransactions!.map((v) => v.toJson()).toList();
-    }
-    if (this.upcomingBills != null) {
-      data['upcomingBills'] =
-          this.upcomingBills!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }
 
 class Address {
@@ -106,90 +79,5 @@ class Address {
     townName = json['townName'];
     postCode = int.tryParse(json['postCode']);
     country = json['country'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['__typename'] = this.sTypename;
-    data['streetName'] = this.streetName;
-    data['buildingNumber'] = this.buildingNumber;
-    data['townName'] = this.townName;
-    data['postCode'] = this.postCode;
-    data['country'] = this.country;
-    return data;
-  }
-}
-
-class RecentTransactions {
-  String? sTypename;
-  String? date;
-  String? description;
-  int? amount;
-  String? fromAccount;
-  String? toAccount;
-
-  RecentTransactions(
-      {this.sTypename,
-        this.date,
-        this.description,
-        this.amount,
-        this.fromAccount,
-        this.toAccount});
-
-  RecentTransactions.fromJson(Map<String, dynamic> json) {
-    sTypename = json['__typename'];
-    date = json['date'];
-    description = json['description'];
-    amount = json['amount'];
-    fromAccount = json['fromAccount'];
-    toAccount = json['toAccount'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['__typename'] = this.sTypename;
-    data['date'] = this.date;
-    data['description'] = this.description;
-    data['amount'] = this.amount;
-    data['fromAccount'] = this.fromAccount;
-    data['toAccount'] = this.toAccount;
-    return data;
-  }
-}
-
-class UpcomingBills {
-  String? sTypename;
-  String? date;
-  String? description;
-  num? amount;
-  String? fromAccount;
-  String? toAccount;
-
-  UpcomingBills(
-      {this.sTypename,
-        this.date,
-        this.description,
-        this.amount,
-        this.fromAccount,
-        this.toAccount});
-
-  UpcomingBills.fromJson(Map<String, dynamic> json) {
-    sTypename = json['__typename'];
-    date = json['date'];
-    description = json['description'];
-    amount = json['amount'];
-    fromAccount = json['fromAccount'];
-    toAccount = json['toAccount'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['__typename'] = this.sTypename;
-    data['date'] = this.date;
-    data['description'] = this.description;
-    data['amount'] = this.amount;
-    data['fromAccount'] = this.fromAccount;
-    data['toAccount'] = this.toAccount;
-    return data;
   }
 }
