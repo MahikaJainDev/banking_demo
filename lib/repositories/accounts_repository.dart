@@ -5,8 +5,10 @@ import 'package:banking_demo/others/queries.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class AccountsRepository {
-  final GraphQLClient _client = clientToQuery();
+  final GraphQLClient _client;
   List<AccountsData>? accounts;
+
+  AccountsRepository(this._client);
 
   Future<List<AccountsData>?> fetchAccounts() async {
     QueryResult result = await _client.query(

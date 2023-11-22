@@ -55,14 +55,14 @@ class Address {
   String? _streetName;
   String? _country;
   String? _townName;
-  int? _buildingNumber;
-  int? _postCode;
+  String? _buildingNumber;
+  String? _postCode;
 
   Address.fromJson(Map<String, dynamic> json) {
     _streetName = json['streetName'];
-    _buildingNumber = int.tryParse(json['buildingNumber']);
+    _buildingNumber = json['buildingNumber'];
     _townName = json['townName'];
-    _postCode = int.tryParse(json['postCode']);
+    _postCode = json['postCode'];
     _country = json['country'];
   }
 
