@@ -1,5 +1,3 @@
-
-import 'package:banking_demo/connection/connection.dart';
 import 'package:banking_demo/models/accounts_model.dart';
 import 'package:banking_demo/others/queries.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';

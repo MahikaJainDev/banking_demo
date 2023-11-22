@@ -11,35 +11,38 @@ void main() {
   late AccountsRepository accountsRepository;
   late MockGraphQLClient mockGraphQLClient;
 
-  setUp(() {
-    mockGraphQLClient = MockGraphQLClient();
-    accountsRepository = AccountsRepository(mockGraphQLClient);
-  });
+  group('Accounts Test - ', () {
 
-  test('Retrieve list of Accounts test', () async {
-    when(
+    setUp(() {
+      mockGraphQLClient = MockGraphQLClient();
+      accountsRepository = AccountsRepository(mockGraphQLClient);
+    });
+
+    test('Retrieve list of Accounts test', () async {
+      when(
             () => mockGraphQLClient.query(
-                QueryOptions(
-                  document: gql(getAccounts)
-                ),
-            ),
-    ).thenAnswer((_) async {
-      return QueryResult(
-        data: {
-          'accounts': [
-            {'id': '1', 'name': 'Account 1'},
-            {'id': '2', 'name': 'Account 2'},
-          ],
-        },
-        options: QueryOptions(
-          document: gql(getAccounts),
+          QueryOptions(
+              document: gql(getAccounts)
+          ),
         ),
-        source: QueryResultSource.network,
+      ).thenAnswer((_) async {
+        return QueryResult(
+          data: {
+            'accounts': [
+              {'id': '1', 'name': 'Account 1'},
+              {'id': '2', 'name': 'Account 2'},
+            ],
+          },
+          options: QueryOptions(
+            document: gql(getAccounts),
+          ),
+          source: QueryResultSource.network,
+        );
+      }
       );
-    }
-    );
-    final List<AccountsData>? list = await accountsRepository.fetchAccounts();
+      final List<AccountsData>? list = await accountsRepository.fetchAccounts();
 
-    expect(list, isA<List<AccountsData>>());
+      expect(list, isA<List<AccountsData>>());
+    });
   });
 }
